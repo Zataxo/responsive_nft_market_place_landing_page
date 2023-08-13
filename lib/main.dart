@@ -15,8 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark()
-          .copyWith(scaffoldBackgroundColor: const Color(0xff1C121F)),
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xff1C121F),
+      ),
       home: const ResponsiveHandler(
           webWinViewLayout: WebScreenLanding(),
           mobileViewLayout: MobileScreenLanding()),
