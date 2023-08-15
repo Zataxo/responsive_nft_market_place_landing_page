@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:responsive_page/widget/custome_button.dart';
+import 'package:responsive_page/widget/nft_holder_card.dart';
 
 class SecondPageView extends StatefulWidget {
   const SecondPageView({
@@ -118,8 +118,11 @@ class _SecondPageViewState extends State<SecondPageView> {
                                   width: 20,
                                 ),
                             itemCount: nftList.length,
-                            itemBuilder: (context, index) =>
-                                _buildNftCardHolder(index)),
+                            itemBuilder: (context, index) => NftHolderCard(
+                                isHover: isHover,
+                                indx: index,
+                                selectedItem: selectedItem,
+                                infoList: nftList)),
                       )),
                 ],
               )),
@@ -235,119 +238,119 @@ class _SecondPageViewState extends State<SecondPageView> {
     );
   }
 
-  Widget _buildNftCardHolder(int _indx) {
-    final size = MediaQuery.of(context).size;
-    return MouseRegion(
-      onEnter: (event) {
-        // print(isHover);
-        isHover = true;
-        selectedItem = _indx;
-        setState(() {});
-      },
-      onExit: (event) {
-        isHover = false;
-        setState(() {});
-      },
-      child: Container(
-        color: const Color(0xff3D2942),
-        width: size.width * 0.2,
-        padding: const EdgeInsets.all(10.0),
-        child: Material(
-          elevation: selectedItem == _indx && isHover ? 10 : 0,
-          color: const Color(0xff3D2942),
-          shadowColor: const Color(0xffE03054),
-          animationDuration: const Duration(seconds: 2),
-          child: Column(
-            children: [
-              Expanded(
-                child: Image.asset(
-                  nftList[_indx],
-                  width: size.width * 1,
-                  height: size.height * 1,
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      // mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image.asset(
-                          "imgs/profile_image1.png",
-                          height: size.height * 0.04,
-                          // width: size.width * 0.1,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: size.width * 0.01),
-                          child: Column(
-                            children: [
-                              Text(
-                                "Virtual Art",
-                                style: TextStyle(
-                                    color: const Color(0xffF5FBF2),
-                                    fontSize: size.width * 0.01),
-                              ),
-                              Text(
-                                "by @wzard",
-                                style: TextStyle(
-                                    color: const Color(0xffBDAAC1),
-                                    fontSize: size.width * 0.008),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Spacer(),
-                        SvgPicture.asset(
-                          "icons/like.svg",
-                          width: size.width * 0.01,
-                        ),
-                        Text(
-                          "92",
-                          style: TextStyle(
-                              color: const Color(0xff76607A),
-                              fontSize: size.width * 0.008),
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Current Bid",
-                            style: TextStyle(
-                                color: const Color(0xff76607A),
-                                fontSize: size.width * 0.01)),
-                        Text("4.89 ETH",
-                            style: TextStyle(
-                                color: const Color(0xffF5FBF2),
-                                fontSize: size.width * 0.01)),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: CustomButton(
-                          onPressed: () {},
-                          title: "Place Bid",
-                          titleStyle: TextStyle(
-                              color: const Color(0xffFFFFFF),
-                              fontSize: size.width * 0.01),
-                          buttonColor: const Color(0xffE9D7A7).withOpacity(0.7),
-                        ))
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _buildNftCardHolder(int _indx) {
+  //   final size = MediaQuery.of(context).size;
+  //   return MouseRegion(
+  //     onEnter: (event) {
+  //       // print(isHover);
+  //       isHover = true;
+  //       selectedItem = _indx;
+  //       setState(() {});
+  //     },
+  //     onExit: (event) {
+  //       isHover = false;
+  //       setState(() {});
+  //     },
+  //     child: Container(
+  //       color: const Color(0xff3D2942),
+  //       width: size.width * 0.2,
+  //       padding: const EdgeInsets.all(10.0),
+  //       child: Material(
+  //         elevation: selectedItem == _indx && isHover ? 10 : 0,
+  //         color: const Color(0xff3D2942),
+  //         shadowColor: const Color(0xffE03054),
+  //         animationDuration: const Duration(seconds: 2),
+  //         child: Column(
+  //           children: [
+  //             Expanded(
+  //               child: Image.asset(
+  //                 nftList[_indx],
+  //                 width: size.width * 1,
+  //                 height: size.height * 1,
+  //               ),
+  //             ),
+  //             const SizedBox(
+  //               height: 5,
+  //             ),
+  //             Expanded(
+  //               child: Column(
+  //                 crossAxisAlignment: CrossAxisAlignment.start,
+  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                 children: [
+  //                   Row(
+  //                     // mainAxisSize: MainAxisSize.min,
+  //                     children: [
+  //                       Image.asset(
+  //                         "imgs/profile_image1.png",
+  //                         height: size.height * 0.04,
+  //                         // width: size.width * 0.1,
+  //                       ),
+  //                       Padding(
+  //                         padding: EdgeInsets.symmetric(
+  //                             horizontal: size.width * 0.01),
+  //                         child: Column(
+  //                           children: [
+  //                             Text(
+  //                               "Virtual Art",
+  //                               style: TextStyle(
+  //                                   color: const Color(0xffF5FBF2),
+  //                                   fontSize: size.width * 0.01),
+  //                             ),
+  //                             Text(
+  //                               "by @wzard",
+  //                               style: TextStyle(
+  //                                   color: const Color(0xffBDAAC1),
+  //                                   fontSize: size.width * 0.008),
+  //                             ),
+  //                           ],
+  //                         ),
+  //                       ),
+  //                       const Spacer(),
+  //                       SvgPicture.asset(
+  //                         "icons/like.svg",
+  //                         width: size.width * 0.01,
+  //                       ),
+  //                       Text(
+  //                         "92",
+  //                         style: TextStyle(
+  //                             color: const Color(0xff76607A),
+  //                             fontSize: size.width * 0.008),
+  //                       )
+  //                     ],
+  //                   ),
+  //                   Row(
+  //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                     children: [
+  //                       Text("Current Bid",
+  //                           style: TextStyle(
+  //                               color: const Color(0xff76607A),
+  //                               fontSize: size.width * 0.01)),
+  //                       Text("4.89 ETH",
+  //                           style: TextStyle(
+  //                               color: const Color(0xffF5FBF2),
+  //                               fontSize: size.width * 0.01)),
+  //                     ],
+  //                   ),
+  //                   Row(
+  //                     children: [
+  //                       Expanded(
+  //                           child: CustomButton(
+  //                         onPressed: () {},
+  //                         title: "Place Bid",
+  //                         titleStyle: TextStyle(
+  //                             color: const Color(0xffFFFFFF),
+  //                             fontSize: size.width * 0.01),
+  //                         buttonColor: const Color(0xffE9D7A7).withOpacity(0.7),
+  //                       ))
+  //                     ],
+  //                   )
+  //                 ],
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }
